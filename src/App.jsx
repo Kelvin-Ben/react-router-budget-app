@@ -1,9 +1,11 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Main, { mainLoader } from "./layouts/Main";
-import Dashboard, { dashboardLoader } from "./pages/Dashboard";
+import Dashboard, { dashboardAction, dashboardLoader } from "./pages/Dashboard";
 import Error from "./pages/Error";
 import { logoutAction } from "./actions/logout";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -15,20 +17,21 @@ const router = createBrowserRouter([
         index: true,
         element: <Dashboard />,
         loader: dashboardLoader,
+        action: dashboardAction,
         errorElement: <Error />,
       },
       {
         path: "logout",
-        action: logoutAction
-
-      }
-    ]
+        action: logoutAction,
+      },
+    ],
   },
 ]);
 const App = () => {
   return (
     <div className="App">
       <RouterProvider router={router} />
+      <ToastContainer />
     </div>
   );
 };
