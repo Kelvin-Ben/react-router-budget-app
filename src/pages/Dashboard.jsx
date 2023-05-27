@@ -4,6 +4,7 @@ import { createBudget, fetchData, waait } from "../helpers";
 import Intro from "../components/Intro";
 import { toast } from "react-toastify";
 import AddBudgetForm from "../components/AddBudgetForm";
+import AddExpenseForm from "../components/AddExpenseForm";
 
 export function dashboardLoader() {
   const userName = fetchData("userName");
@@ -47,12 +48,24 @@ const Dashboard = () => {
             Welcome back, <span className="accent">{userName}</span>
           </h1>
           <div className="grid-sm">
-            {/* {budgets ? () : ()} */}
-            <div className="grid-lg">
-              <div className="flex-lg">
+            {
+              budgets && budgets.length > 0
+              ? (
+                <div className="grid-lg">
+                  <div className="flex-lg">
+                    <AddBudgetForm />
+                    <AddExpenseForm  budgets={budgets} />
+                  </div>
+                </div>
+            ) 
+            : (
+              <div className="grid-sm">
+                <p>Personal budgeting is the secret to financial freedom.</p>
+                <p>Create a budget to get started!</p>
                 <AddBudgetForm />
               </div>
-            </div>
+            )
+          }
           </div>
         </div>
       ) : (
