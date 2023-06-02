@@ -1,20 +1,20 @@
 import { CurrencyDollarIcon } from "@heroicons/react/24/solid";
 import { useEffect, useRef } from "react";
-// import React from "react"; 
+// import React from "react";
 import { Form, useFetcher } from "react-router-dom";
 
 const AddBudgetForm = () => {
   const fetcher = useFetcher();
-  const isSubmitting = fetcher.state === "submitting"
-  const formRef = useRef()
-  const focusRef = useRef()
+  const isSubmitting = fetcher.state === "submitting";
+  const formRef = useRef();
+  const focusRef = useRef();
 
   useEffect(() => {
-    if(!isSubmitting) {
-      formRef.current.reset()
-      focusRef.current.focus()
+    if (!isSubmitting) {
+      formRef.current.reset();
+      focusRef.current.focus();
     }
-  }, [isSubmitting])
+  }, [isSubmitting]);
   return (
     <div className="form-wrapper">
       <h2 className="h3">Create a budget</h2>
@@ -44,14 +44,14 @@ const AddBudgetForm = () => {
         </div>
         <input type="hidden" name="_action" value="createBudget" />
         <button type="submit" className="btn btn--dark" disabled={isSubmitting}>
-          {
-            isSubmitting ? <span>Creating budget...</span> : (
-              <>
+          {isSubmitting ? (
+            <span>Creating budget...</span>
+          ) : (
+            <>
               <span>Create Budget</span>
-          <CurrencyDollarIcon  width={20}/>
-              </>
-            )
-          }
+              <CurrencyDollarIcon width={20} />
+            </>
+          )}
         </button>
       </fetcher.Form>
     </div>
