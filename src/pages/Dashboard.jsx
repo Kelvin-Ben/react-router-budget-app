@@ -1,6 +1,12 @@
 import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
-import { createBudget, createExpense, deleteItem, fetchData, waait } from "../helpers";
+import {
+  createBudget,
+  createExpense,
+  deleteItem,
+  fetchData,
+  waait,
+} from "../helpers";
 import Intro from "../components/Intro";
 import { toast } from "react-toastify";
 import AddBudgetForm from "../components/AddBudgetForm";
@@ -62,7 +68,7 @@ export async function dashboardAction({ request }) {
         key: "expenses",
         id: values.expenseId,
       });
-      return toast.success('Expense deleted!');
+      return toast.success("Expense deleted!");
     } catch (e) {
       throw new Error("There was a problem deleting your expense");
     }
